@@ -20,17 +20,18 @@ switch ($action) {
 
         // validate the scores
         // TODO: Convert this if statement to a for loop
-        for( i = 0; i < $scores.length; i++)
-        {
-        if (empty($scores[i]) || !is_numeric($scores[i])) {
-                $scores_string = 'You must enter three valid numbers for scores.';
-                break;
-            }
+        for($t = 0; $t < 3; $t++) {
+       	    if(empty($scores[$t]) || !is_numeric($scores[$t]))
+	    {
+	  	$scores_string = 'You must enter three valid numbers for scores.';
+		break 2;
+	  }
         }
-
         // process the scores
         // TODO: Add code that calculates the score total
-        $score_total = $scores[0] + $scores[1] + $scores[2];
+	foreach ($scores as $d){
+	    $score_total += $d;
+	}
         $scores_string = '';
         foreach ($scores as $s) {
             $scores_string .= $s . '|';
@@ -50,17 +51,15 @@ switch ($action) {
                 FILTER_VALIDATE_INT);
 
         $total = 0;
-        $count = 0;
         $max_rolls = -INF;
 
         // TODO: convert this while loop to a for loop
-        while ($count < 10000) {
+        for ($count = 0; $count < 10000; $count++) {
             $rolls = 1;
             while (mt_rand(1, 6) != 6) {
                 $rolls++;
             }
             $total += $rolls;
-            $count++;
             $max_rolls = max($rolls, $max_rolls);
         }
         $average_rolls = $total / $count;

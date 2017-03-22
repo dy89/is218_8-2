@@ -43,12 +43,9 @@
         <label>Number to Roll:</label>
         <select name="number_to_roll">
             <!-- TODO: Use a for loop to display these options ! -->
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+	    <?php for($s = 1; $s <=6; $s++) : ?>
+		<option value ="<?php echo $s; ?>"><?php echo $s; ?></option>
+	    <?php endfor; ?>
         </select><br>
 
         <label>&nbsp;</label>
